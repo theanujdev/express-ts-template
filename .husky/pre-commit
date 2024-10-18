@@ -1,0 +1,10 @@
+printf "\n🔍 Running pre-commit checks...\n"
+
+# Add your linting, tests, or formatting here
+npm run lint:fix
+npm run format:fix
+
+# Add all the changes to the git index
+git update-index --again
+
+printf "\n✅ Pre-commit checks passed!\n\n"
