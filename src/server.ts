@@ -1,5 +1,15 @@
+import app from "./app";
 import { Config } from "./config";
 
-const message: string = "Hello World";
+const startServer = () => {
+  const PORT = Config.PORT;
+  try {
+    app.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Error starting server: ", error);
+  }
+};
 
-console.log(message, Config.PORT);
+startServer();

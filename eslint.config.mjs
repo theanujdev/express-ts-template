@@ -35,6 +35,12 @@ export default tseslint.config(
     },
     rules: {
       "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/restrict-template-expressions": [
+        "error",
+        {
+          allowNumber: true,
+        },
+      ],
       "no-console": "warn",
     },
   },
