@@ -24,21 +24,13 @@ const logger = winston.createLogger({
       silent: IS_TEST_ENV,
     }),
   ],
-  // Handle uncaught exceptions
-  exceptionHandlers: [
-    new winston.transports.File({
-      dirname: "logs",
-      filename: "exceptions.log",
-      silent: IS_TEST_ENV,
-    }),
-  ],
 });
 
 // If we are in development, log to the console as well
 if (Config.NODE_ENV === "development") {
   logger.add(
     new winston.transports.Console({
-      level: "info",
+      level: "debug",
     })
   );
 }
