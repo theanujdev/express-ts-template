@@ -42,6 +42,12 @@ export default tseslint.config(
         },
       ],
       "@typescript-eslint/require-await": "warn",
+      "@typescript-eslint/no-misused-promises": [
+        "error",
+        {
+          checksVoidReturn: false,
+        },
+      ],
       "no-console": "warn",
     },
   },
