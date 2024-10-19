@@ -41,6 +41,7 @@ export default tseslint.config(
           allowNumber: true,
         },
       ],
+      "@typescript-eslint/require-await": "warn",
       "no-console": "warn",
     },
   },
