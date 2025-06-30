@@ -8,7 +8,7 @@ const logger = winston.createLogger({
   defaultMeta: { service: "express-ts-template" },
   format: winston.format.combine(
     winston.format.timestamp(),
-    winston.format.json()
+    winston.format.json(),
   ),
   transports: [
     new winston.transports.File({
@@ -26,12 +26,15 @@ const logger = winston.createLogger({
   ],
 });
 
-// If we are in development, log to the console as well
+// If we are in development then log to the console with simple format:
+// `${info.level}: ${info.message} JSON.stringify({ ...rest })`
 if (Config.NODE_ENV === "development") {
   logger.add(
     new winston.transports.Console({
-      level: "debug",
-    })
+      level: "info",
+
+      format: winston.format.simple(),
+    }),
   );
 }
 

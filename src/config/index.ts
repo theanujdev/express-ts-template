@@ -1,10 +1,10 @@
 import { config } from "dotenv";
 
-config();
-
-const { PORT, NODE_ENV } = process.env;
+if (process.env.NODE_ENV !== "production") {
+  config();
+}
 
 export const Config = {
-  PORT: PORT || 5000,
-  NODE_ENV: NODE_ENV || "development",
+  NODE_ENV: process.env.NODE_ENV || "development",
+  PORT: Number(process.env.PORT) || 5000,
 };

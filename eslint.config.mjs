@@ -1,66 +1,43 @@
 // @ts-check
 
 import eslint from "@eslint/js";
-import prettier from "eslint-config-prettier";
-import globals from "globals";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   // global ignores
   {
-    ignores: ["dist/", "node_modules/"],
+    ignores: ["dist", "node_modules", "eslint.config.mjs", "jest.config.js"],
   },
 
-  // applies to everything
+  // apply configs
   eslint.configs.recommended,
+  tseslint.configs.strictTypeChecked,
 
-  // applies only to ts files
+  // other configs
   {
-    name: "tseslint",
     files: ["src/**/*.ts"],
-    extends: [
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.strictTypeChecked,
-    ],
-    plugins: {
-      "@typescript-eslint": tseslint.plugin,
-    },
     languageOptions: {
-      parser: tseslint.parser,
       parserOptions: {
-        project: true,
-        // projectService: true,
-        // tsconfigRootDir: import.meta.dirname,
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
+      "no-console": "warn",
       "@typescript-eslint/no-unused-vars": "warn",
       "@typescript-eslint/restrict-template-expressions": [
         "error",
         {
           allowNumber: true,
+          allowBoolean: false,
+          allowAny: false,
+          allowNullish: false,
         },
       ],
-      "@typescript-eslint/require-await": "warn",
-      "@typescript-eslint/no-misused-promises": [
-        "error",
-        {
-          checksVoidReturn: false,
-        },
-      ],
-      "no-console": "warn",
     },
   },
 
-  // global variables, applies to everything
-  {
-    languageOptions: {
-      globals: {
-        ...globals.node,
-      },
-    },
-  },
-
-  // prettier config
-  prettier
+  // eslint prettier config
+  eslintConfigPrettier,
 );
