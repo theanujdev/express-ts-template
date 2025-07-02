@@ -37,6 +37,12 @@ export default tseslint.config(
     },
   },
 
+  // disable type-checked linting
+  {
+    files: ["**/*.spec.ts"],
+    extends: [tseslint.configs.disableTypeChecked],
+  },
+
   // eslint prettier config
   eslintConfigPrettier,
 );
