@@ -16,7 +16,6 @@ export default tseslint.config(
 
   // other configs
   {
-    files: ["src/**/*.ts"],
     languageOptions: {
       parserOptions: {
         projectService: true,
