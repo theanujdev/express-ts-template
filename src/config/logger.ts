@@ -1,7 +1,7 @@
 import winston from "winston";
-import { Config } from ".";
+import { config } from "./index";
 
-const IS_TEST_ENV = Config.NODE_ENV === "test";
+const IS_TEST_ENV = config.NODE_ENV === "test";
 
 const logger = winston.createLogger({
   level: "info",
@@ -28,7 +28,7 @@ const logger = winston.createLogger({
 
 // If we are in development then log to the console with simple format:
 // `${info.level}: ${info.message} JSON.stringify({ ...rest })`
-if (Config.NODE_ENV === "development") {
+if (config.NODE_ENV === "development") {
   logger.add(
     new winston.transports.Console({
       level: "info",
